@@ -11,10 +11,10 @@ script:
   - docker run -e CI=true somuy/multi-docker yarn test
 
 after_success:
-  - docker build -t somuy/multi-client -f ./client
-  - docker build -t somuy/multi-nginx -f ./nginx
-  - docker build -t somuy/multi-server -f ./server
-  - docker build -t somuy/multi-worker -f ./worker 
+  - docker build -t somuy/multi-client ./client
+  - docker build -t somuy/multi-nginx ./nginx
+  - docker build -t somuy/multi-server ./server
+  - docker build -t somuy/multi-worker ./worker 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push somuy/multi-client
   - docker push somuy/multi-nginx
